@@ -1,0 +1,64 @@
+#访问相关配置
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+
+#数据库配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shop?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    #Hikari连接池配置
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+#thymeleaf模板引擎配置，这些配置已是默认的配置，不配置也可以，配置出来能更加直观
+  thymeleaf:
+    #关闭模板缓存，在开发的时候不用重启就能实时查看页面效果，（ctrl+f9）
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+
+  #格式化日期
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+
+
+
+#mybatis相关配置
+mybatis:
+  #mybatis映射文件的位置
+  mapper-locations: classpath:mapping/*.xml
+  #mybatis实体类的位置
+  type-aliases-package: com.bjfn.springboot.entity
+  #核心配置文件
+  config-location: classpath:mybatis-config.xml
+
+# 将mapper接口所在包的日志级别改成debug，可以在控制台打印sql
+logging:
+  level:
+    com.bjfn.springboot.mapper: debug
+
+
