@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjfn.springboot.mapper.SysUserMapper">
+    <select id="selectById" resultType="com.bjfn.springboot.entity.SysUser">
+        select * from sys_user
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
+    <select id="selectByName" resultType="com.bjfn.springboot.entity.SysUser">
+        select * from sys_user
+        <where>
+            name = #{name}
+        </where>
+    </select>
+</mapper>
